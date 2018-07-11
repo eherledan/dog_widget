@@ -1,8 +1,8 @@
-#dog_widget
+# dog_widget
 
 Widget ReactJS permettant d'afficher des chiens trop mimi.
 
-##Utiliser le widget
+## Utiliser le widget
 
 Pour parametrer la fréquence de rafraichissement des images, ajoutez un paramètre "reload_frequency" avec le temps en secondes.
 
