@@ -23,8 +23,10 @@ class DogWidget extends Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                const dog = data[0];
-                this.setState({dog: dog});
+                this.props.animate().then(() => {
+                  const dog = data[0];
+                  this.setState({dog: dog});
+                })
             });
     }
 
