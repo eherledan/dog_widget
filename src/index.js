@@ -5,17 +5,18 @@ class DogWidget extends Component {
 
   constructor(props) {
     super(props);
+    this.api_url = 'https://api.thedogapi.com/v1/images/search?';
     this.state = {dog: {}};
   }
 
     componentDidMount() {
-        this.loadDog('https://api.thedogapi.com/v1/images/search?');
+        this.loadDog(this.api_url);
         var reload_frequency = 10;
         if (this.props.reload_frequency != null) {
             reload_frequency = this.props.reload_frequency;
         }
         reload_frequency = reload_frequency * 1000;
-        setInterval(() => this.loadDog('https://api.thedogapi.com/v1/images/search?'), reload_frequency);
+        setInterval(() => this.loadDog(this.api_url), reload_frequency);
 
     }
 
