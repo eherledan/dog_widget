@@ -5,7 +5,7 @@ class DogWidget extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {dog: {}, dogInfos: {}};
+    this.state = {dog: {}};
   }
 
     componentDidMount() {
@@ -15,7 +15,6 @@ class DogWidget extends Component {
             reload_frequency = this.props.reload_frequency;
         }
         reload_frequency = reload_frequency * 1000;
-        console.log(reload_frequency);
         setInterval(() => this.loadDog('https://api.thedogapi.com/v1/images/search?'), reload_frequency);
 
     }
@@ -26,24 +25,27 @@ class DogWidget extends Component {
             .then(data => {
                 const dog = data[0];
                 this.setState({dog: dog});
-                if (dog.breeds[0] != undefined) {
-                  this.setState({dogInfos: dog.breeds[0]});
-                }
             });
     }
 
   render() {
+    const { dog } = this.state;
+
+    const overlay = (typeof dog.breeds !== 'undefined' && dog.breeds[0]) ? (
+      <div className="overlay">
+        <div className="text">
+          <p>{dog.breeds[0].name}</p>
+          <p>{dog.breeds[0].life_span}</p>
+          <p>{dog.breeds[0].temperament}</p>
+        </div>
+      </div>
+    ) : null;
+
     return (
-          <div className="container">
-            <img className="image" src={this.state.dog.url}></img>
-            <div className="overlay">
-                <div className="text">
-                    <p>{this.state.dogInfos.name}</p>
-                    <p>{this.state.dogInfos.life_span}</p>
-                    <p>{this.state.dogInfos.temperament}</p>
-                </div>
-            </div>
-          </div>
+      <div className="container">
+        <img className="image" src={dog.url}></img>
+        {overlay}
+      </div>
     );
   }
 
