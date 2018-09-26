@@ -1,6 +1,7 @@
 # dog_widget
 
-Widget ReactJS permettant d'afficher des chiens trop mimi.
+Widget ReactJS permettant d'afficher des chiens.
+Développé dans le cadre d'un cours sur React au sein de l'école IMIE.
 
 ## Utiliser le widget
 
